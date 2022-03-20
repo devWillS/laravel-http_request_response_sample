@@ -6,12 +6,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegistPost;
+use App\Http\Requests\UserRegistPostApi;
 
 class UserController extends Controller
 {
     public function index()
     {
         return csrf_token(); 
+    }
+
+    public function create()
+    {
+        return view('regist.register');
+    }
+
+    public function createForm()
+    {
+        return view('regist.registerForm');
     }
 
     public function register(Request $request)
@@ -34,7 +45,17 @@ class UserController extends Controller
         return $name;
     }
 
-    public function registerApi(UserRegistPost $request)
+    public function registerForm(UserRegistPost $request)
+    {
+        // ここに来るまでにバリデーション判定が行われている
+
+        // ここにバリデーション通過後の処理
+        $name = $request->get('name');
+
+        return $name;
+    }
+
+    public function registerApi(UserRegistPostApi $request)
     {
         // ここに来るまでにバリデーション判定が行われている
 

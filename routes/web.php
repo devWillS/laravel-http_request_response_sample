@@ -19,3 +19,12 @@ Route::get('/', function () {
 
 Route::get('/user', 'App\Http\Controllers\UserController@index');
 Route::post('/user/register', 'App\Http\Controllers\UserController@register');
+Route::post('/user/registerForm', 'App\Http\Controllers\UserController@registerForm');
+
+Route::get('/register', [App\Http\Controllers\UserController::class, 'create'])
+->middleware('guest')
+->name('register');
+
+Route::get('/registerForm', [App\Http\Controllers\UserController::class, 'createForm'])
+->middleware('guest')
+->name('register');

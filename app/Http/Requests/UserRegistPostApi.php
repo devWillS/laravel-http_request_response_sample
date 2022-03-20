@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException; 
 
-class UserRegistPost extends FormRequest
+class UserRegistPostApi extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -40,5 +40,21 @@ class UserRegistPost extends FormRequest
             'name' => ['required', 'max:20'],
             'email' => ['required', 'email', 'max:255'],
         ];
+    }
+
+    /**
+     * [override] バリデーション失敗時ハンドリング
+     *
+     * @param Validator $validator
+     * @throw HttpResponseException
+     * @see FormRequest::failedValidation()
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        $response['errors']  = $validator->errors()->toArray();
+
+        throw new HttpResponseException(
+            response()->json( $response, 422 )
+        );
     }
 }
