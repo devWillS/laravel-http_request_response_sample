@@ -34,6 +34,14 @@
                 <dt>パスワード(確認):</dt>
                 <dd><input type="password" name="password_confirmation" size="30">
             </dl>
+            <dl>
+                <dt>メールマガジン:</dt>
+                <dd><input type="text" name="mailmagazine" size="30">
+            </dl>
+            <dl>
+                <dt>年齢:</dt>
+                <dd><input type="number" name="age" size="30">
+            </dl>
             <button type='submit' name='action' value='send'>送信</button>
         </form>
     </body>
