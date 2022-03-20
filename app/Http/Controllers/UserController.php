@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-// FormRequestクラスをインポートする
-use App\Http\Requests\UserRegistPost;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -16,15 +16,28 @@ class UserController extends Controller
     }
 
     // 引数でUserRegistPostクラスのインスタンスを渡す
-    public function register(UserRegistPost $request)
+    public function register(Request $request)
     {
-        // インスタンスに対して値を問い合わせ
-        $name = $request->get('name');
-        $age = $request->get('age');
-        Log::info('UserController', ["name" => $name]);
-        Log::info('UserController', ["age" => $age]);
+        // すべての入力値を取得し$inputsに保持する
+        $inputs = $request->all();
+        
+        // バリデーションルールを定義する
+        // nameキーの値は必須とし、ageは整数型とする
+        $rules = [
+            'name' => 'required',
+            'age' => 'integer',
+        ];
 
-        return $name;
+        // バリデータクラスのインスタンスを取得
+        $validator = Validator::make($inputs, $rules);
+
+        if ($validator->fails()) {
+            Log::info("UserController validator error"); 
+            return "validator error";
+        }
+
+        Log::info("UserController validator success");
+        return "validator success";
     }
 }
 
