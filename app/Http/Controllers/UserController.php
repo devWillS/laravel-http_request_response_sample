@@ -25,7 +25,8 @@ class UserController extends Controller
         // nameキーの値は必須とし、ageは整数型とする
         $rules = [
             'name' => 'required',
-            'age' => 'integer',
+            'email' => ['required','email'],  // 藍列で指定（必須かつメールアドレスであること）
+            'age' => 'required|integer', // パイプラインで区切る（必須かつ整数値）
         ];
 
         // バリデータクラスのインスタンスを取得
