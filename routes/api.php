@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/request', 'App\Http\Controllers\RequestAction');
+Route::get('/payload', 'App\Http\Controllers\PayloadAction');
