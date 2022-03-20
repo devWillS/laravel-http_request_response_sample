@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => env('LOG_CHANNEL', 'stdout'),
 
     /*
     |--------------------------------------------------------------------------
@@ -114,6 +114,15 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'stdout' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'with' => [
+                'stream' => 'php://stdout',
+            ],
+                // debugは最低レベルなので全レベルのログを書き出す
+            'level' => 'debug', 
+      ],
     ],
 
 ];
