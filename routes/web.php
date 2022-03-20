@@ -33,3 +33,4 @@ Route::get('/view', 'App\Http\Controllers\ViewAction');
 Route::get('/download', 'App\Http\Controllers\DownloadAction');
 Route::get('/redirect', 'App\Http\Controllers\RedirectAction');
 Route::get('/stream', 'App\Http\Controllers\StreamAction');
+Route::get('/payload', 'App\Http\Controllers\ArticlePayloadAction');
