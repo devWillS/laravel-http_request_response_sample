@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-// Requestクラスをインポートする
-use Illuminate\Http\Request;
+// FormRequestクラスをインポートする
+use App\Http\Requests\UserRegistPost;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -15,8 +15,8 @@ class UserController extends Controller
         return csrf_token(); 
     }
 
-    // 引数でRequestクラスのインスタンスを渡す
-    public function register(Request $request)
+    // 引数でUserRegistPostクラスのインスタンスを渡す
+    public function register(UserRegistPost $request)
     {
         // インスタンスに対して値を問い合わせ
         $name = $request->get('name');
