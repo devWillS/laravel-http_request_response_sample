@@ -28,3 +28,8 @@ Route::get('/register', [App\Http\Controllers\UserController::class, 'create'])
 Route::get('/registerForm', [App\Http\Controllers\UserController::class, 'createForm'])
 ->middleware('guest')
 ->name('register');
+
+Route::get('/view', 'App\Http\Controllers\ViewAction');
+Route::get('/download', 'App\Http\Controllers\DownloadAction');
+Route::get('/redirect', 'App\Http\Controllers\RedirectAction');
+Route::get('/stream', 'App\Http\Controllers\StreamAction');
